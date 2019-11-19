@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:audioplayers/audio_cache.dart';
 
 class EggTimer{
 
@@ -8,6 +9,9 @@ class EggTimer{
   Duration _currentTime = Duration(seconds: 0);
   Duration lastStartTime = const Duration(seconds: 0);
   EggTimerState state = EggTimerState.ready;
+
+
+  var player = new AudioCache();
 
 
   EggTimer({
@@ -63,9 +67,16 @@ class EggTimer{
     _currentTime = lastStartTime - stopwatch.elapsed;
 
     if(_currentTime.inSeconds > 0) {
+      if (_currentTime.inSeconds <= 3 && _currentTime.inSeconds >= 1) {
+        player.play('pip.mp3');
+      }
       Timer(const Duration(seconds: 1), _tick);
+
     } else {
+
       state = EggTimerState.ready;
+      player.play('boop.mp3');
+
     }
 
     if(null != onTimerUpdate) {

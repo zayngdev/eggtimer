@@ -1,7 +1,7 @@
 name: egg_timer
 description: Egg Timer
 
-version: 1.0.0+1
+version: 1.0.1+2
 
 dependencies:
   flutter:
@@ -10,6 +10,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   fluttery_dart2: ^0.0.9
   intl:
+  audioplayers: ^0.13.2
 
 dev_dependencies:
   flutter_test:
@@ -18,3 +19,8 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/boop.mp3
+    - assets/dingdingding.wav
+    - assets/pip.mp3
