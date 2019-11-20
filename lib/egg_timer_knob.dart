@@ -29,7 +29,7 @@ class _EggTimerDialKnobState extends State<EggTimerDialKnob> {
             ),
           ),
           Container(    // Inner circle
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(0),
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: LinearGradient(
@@ -39,9 +39,9 @@ class _EggTimerDialKnobState extends State<EggTimerDialKnob> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0x44000000),
-                    blurRadius: 5.0,
-                    spreadRadius: 1.0,
+                    color: Colors.yellowAccent.withOpacity(0.4),
+                    blurRadius: 70.0,
+                    spreadRadius: 5.0,
                     offset: Offset(0.0, 1.0),
                   )
                 ]
@@ -51,25 +51,37 @@ class _EggTimerDialKnobState extends State<EggTimerDialKnob> {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                      color: Color(0xFFDFDFDF),
-                      width: 1.5
+                      //color: Color(0xFFDFDFDF),
+                      color: Colors.yellowAccent.withOpacity(1),
+                      width: 0.4
                   )
               ),
-
-              child: Center(
-                child: Transform(
-                  transform: Matrix4.rotationY(2 * 3.14 * widget.rotationPercent),
-                  alignment: Alignment.center,
-                  child: Icon(Icons.arrow_upward,
-                    color: Colors.black,),
-                ),
-              ) ,
+              child:  Container(
+                margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Color(0xFFDFDFDF),
+                          width: 1
+                      )
+                  ),
+                  child:Center(
+                    child: Transform(
+                      transform: Matrix4.rotationY(2 * 3.14 * widget.rotationPercent),
+                      alignment: Alignment.center,
+                      child: Icon(Icons.account_circle,
+                        color: Colors.grey,),
+                    ),
+                  ) ,
+              ),
             ),
           ),
         ]
     );
   }
 }
+
+
 
 class ArrowPainter extends CustomPainter {
 
@@ -78,7 +90,7 @@ class ArrowPainter extends CustomPainter {
 
   ArrowPainter({this.rotationPercent})
       : dialArrowPaint = new Paint() {
-    dialArrowPaint.color = Colors.black;
+    dialArrowPaint.color = Colors.red;
     dialArrowPaint.style = PaintingStyle.fill;
 
   }

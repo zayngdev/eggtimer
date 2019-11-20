@@ -233,6 +233,7 @@ class TickPainter extends CustomPainter {
           textDirection: TextDirection.ltr,
         ),
         textStyle = TextStyle(
+          fontFamily: "AvenirLTStd-Black",
           color: Colors.black,
           fontSize: 15.0,
         ) {

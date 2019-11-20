@@ -25,3 +25,16 @@ flutter:
     - assets/boop.mp3
     - assets/dingdingding.wav
     - assets/pip.mp3
+
+  fonts:
+    - family: AvenirLTStd-Black
+      fonts:
+        - asset: assets/fonts/AvenirLTStd-Roman.otf
+
+    - family: Releway
+      fonts:
+        - asset: assets/fonts/Raleway-Regular.ttf
+
+    - family: SourceHans
+      fonts:
+        - asset: assets/fonts/SourceHanSansCN-Regular.ttf

@@ -31,6 +31,7 @@ class EggTimerButton extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
+                  fontFamily: "SourceHans",
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2.0

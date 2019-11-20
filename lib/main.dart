@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
         )),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top:30.0),
+            padding: const EdgeInsets.only(top:65.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[

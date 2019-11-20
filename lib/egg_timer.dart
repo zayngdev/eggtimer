@@ -104,10 +104,6 @@ class EggTimer{
   }
 
   reset() {
-    if(state == EggTimerState.paused){
-
-    }
-
     state = EggTimerState.ready;
     _currentTime = const Duration(seconds: 0);
     lastStartTime = _currentTime;

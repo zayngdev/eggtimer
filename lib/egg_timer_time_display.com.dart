@@ -94,8 +94,9 @@ class _EggTimerTimeDisplayState extends State<EggTimerTimeDisplay>
               formattedSelectionTime,
               textAlign: TextAlign.center,
               style: TextStyle(
+                fontFamily: "AvenirLTStd-Black",
                   color: Colors.black,
-                  fontSize: 100,
+                  fontSize: 80,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 5.0
               ),
@@ -108,8 +109,9 @@ class _EggTimerTimeDisplayState extends State<EggTimerTimeDisplay>
               formattedCountdownTime,
               textAlign: TextAlign.center,
               style: TextStyle(
+                fontFamily: "AvenirLTStd-Black",
                   color: Colors.black,
-                  fontSize: 100,
+                  fontSize: 80,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 5.0
               ),
