@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+import 'main.dart';
 
 class EggTimer{
 
@@ -10,9 +14,7 @@ class EggTimer{
   Duration lastStartTime = const Duration(seconds: 0);
   EggTimerState state = EggTimerState.ready;
 
-
   var player = new AudioCache();
-
 
   EggTimer({
     this.maxTime,
@@ -39,6 +41,8 @@ class EggTimer{
 
       state = EggTimerState.running;
       stopwatch.start();
+
+      _showNotification('开始计时');
 
       _tick();
     }
@@ -70,13 +74,17 @@ class EggTimer{
       if (_currentTime.inSeconds <= 3 && _currentTime.inSeconds >= 1) {
         player.play('pip.mp3');
       }
+
       Timer(const Duration(seconds: 1), _tick);
 
     } else {
 
       state = EggTimerState.ready;
       player.play('boop.mp3');
-
+      Future.delayed(Duration(milliseconds: 200)).then((e) {
+        _showNotification('计时结束');
+      });
+      reset();
     }
 
     if(null != onTimerUpdate) {
@@ -97,15 +105,45 @@ class EggTimer{
 
   reset() {
     if(state == EggTimerState.paused){
-      state = EggTimerState.ready;
-      _currentTime = const Duration(seconds: 0);
-      lastStartTime = _currentTime;
-      stopwatch.reset();
 
-      if(null != onTimerUpdate) {
-        onTimerUpdate();
-      }
     }
+
+    state = EggTimerState.ready;
+    _currentTime = const Duration(seconds: 0);
+    lastStartTime = _currentTime;
+    stopwatch.reset();
+
+    if(null != onTimerUpdate) {
+      onTimerUpdate();
+    }
+
+  }
+
+  _showNotification(String reminderContent) async {
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      'eggtimer',
+      '蛋蛋计时器',
+      '用于蛋蛋计时器发送提醒',
+      importance: Importance.Max,
+      priority: Priority.High,
+      ongoing: true,
+      autoCancel: false,
+      ticker: 'ticker',
+      enableLights: true,
+      color: Colors.amber,
+      ledColor: Colors.redAccent,
+      ledOnMs: 1000,
+      ledOffMs: 500,
+    );
+    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+    var platformChannelSpecifics = NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      '计时提醒',
+      reminderContent,
+      platformChannelSpecifics,
+    );
   }
 
 }

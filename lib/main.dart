@@ -2,11 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:egg_timer/egg_timer_controls.dart';
 import 'package:egg_timer/egg_timer_dial.dart';
 import 'package:egg_timer/egg_timer_time_display.com.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'egg_timer.dart';
 import 'egg_timer_knob.dart';
 
-void main() => runApp(MyApp());
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  var initializationSettingsAndroid =
+  AndroidInitializationSettings('ic_notification');
+  var initializationSettingsIOS = IOSInitializationSettings();
+  var initializationSettings = InitializationSettings(
+      initializationSettingsAndroid, initializationSettingsIOS);
+  flutterLocalNotificationsPlugin.initialize(initializationSettings,
+      onSelectNotification: onSelectNotification);
+
+  var details =
+      await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+
+  runApp(MyApp());
+
+}
+
+Future onSelectNotification(String payload) async {
+  if (payload != null) {
+    print('notification payload: ' + payload);
+  }
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
